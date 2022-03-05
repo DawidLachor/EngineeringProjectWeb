@@ -1,0 +1,6 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid pb-3 pt-3">
+    <a class="navbar-brand" (click)="navigation()">EngineeringProjectWeb</a>
+    <button *ngIf="service.jwt" class="navbar-toggler" (click)="logout()" type="button">Wyloguj</button>
+  </div>
+</nav>
