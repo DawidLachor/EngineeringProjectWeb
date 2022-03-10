@@ -1,6 +1,20 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid pb-3 pt-3">
     <a class="navbar-brand" (click)="navigation()">EngineeringProjectWeb</a>
-    <button *ngIf="service.jwt" class="navbar-toggler" (click)="logout()" type="button">Wyloguj</button>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Konto
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" routerLink="/login">Zaloguj</a></li>
+        <li><a class="dropdown-item" routerLink="/rejestracja">Zarejestruj</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
+<script>
+  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+  var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+    return new bootstrap.Dropdown(dropdownToggleEl)
+  })
+</script>
