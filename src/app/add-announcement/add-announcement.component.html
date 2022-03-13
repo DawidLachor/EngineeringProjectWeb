@@ -1,0 +1,147 @@
+<section class="login-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 login-sec">
+        <div class="row">
+
+          <h1 class="text-center">Dodaj ogłoszenie</h1>
+          <form class="login-form" #addForm="ngForm">
+            <h3>Dane auta</h3>
+            <div class="form-group row">
+              <h4>Podstawowe dane</h4>
+              <div class="col-md-6">
+                <label for="vin" class="text-uppercase">VIN</label>
+                <input type="text" name="vin" class="form-control" id="vin" placeholder="VIN">
+              </div>
+              <div class="col-md-6">
+                <label for="mileage" class="text-uppercase">Przebieg</label>
+                <input type="text" name="mileage" class="form-control" id="mileage" placeholder="Przebieg">
+              </div>
+              <div class="col-md-6">
+                <label for="registration_number" class="text-uppercase">Numer rejestracji</label>
+                <input type="text" name="registration_number" class="form-control" id="registration_number" placeholder="KW58742">
+              </div>
+              <div class="col-md-6">
+                <label for="first_registration" class="text-uppercase">Pierwsza rejestracja</label>
+                <input type="date" name="first_registration" class="form-control" id="first_registration">
+              </div>
+              <div class="col-md-6">
+                <label for="year_of_production" class="text-uppercase">Rok produkcji</label>
+                <input type="month" name="year_of_production" class="form-control" id="year_of_production">
+              </div>
+              <div class="col-md-6">
+                <label for="country_of_production" class="text-uppercase">Kraj produkcji</label>
+                <input type="text" name="country_of_production" class="form-control" id="country_of_production">
+              </div>
+
+              <div class="col-md-6">
+                <label for="marka" class="text-uppercase">Marka</label>
+                <select name="Brand" class="form-select" id="marka" aria-label="Default select example"
+                        [(ngModel)]="idBrandSelector" (ngModelChange)="getModel($event)">
+                  <option *ngFor="let brand of brands" [ngValue]="brand.id" [selected]="brand">{{ brand.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="model" class="text-uppercase">Model</label>
+                <select name="model" class="form-select" id="model" aria-label="Default select example"
+                        [(ngModel)]="idModelSelector" [disabled]="!disabledModel"
+                        (ngModelChange)="getGeneration($event)">
+                  <option *ngFor="let model of models" [ngValue]="model.id">{{ model.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="model" class="text-uppercase">Generacja</label>
+                <select class="form-select" id="generation" aria-label="Default select example"
+                        [disabled]="!disabledGeneration">
+                  <option *ngFor="let generation of generations"
+                          [ngValue]="generation.id">{{ generation.name }}</option>
+                </select>
+              </div>
+
+              <h4>Silnik</h4>
+              <div class="col-md-6">
+                <label for="gas" class="text-uppercase">Paliwo</label>
+                <select class="form-select" id="gas" aria-label="Default select example">
+                  <option *ngFor="let typeEngine of typeEngines"
+                          [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="power" class="text-uppercase">Moc</label>
+                <input type="number" name="power" class="form-control" id="power">
+              </div>
+
+              <div class="col-md-6">
+                <label for="capacity" class="text-uppercase">Pojemność</label>
+                <input type="number" name="capacity" class="form-control" id="capacity">
+              </div>
+
+              <div class="col-md-6">
+                <label for="transmission" class="text-uppercase">Skrzynia biegów</label>
+                <select class="form-select" id="transmission" aria-label="Default select example">
+                  <option [ngValue]="1">Manualna</option>
+                  <option [ngValue]="2">Automatyczna</option>
+                </select>
+              </div>
+
+              <h4>Nadwozie</h4>
+              <div class="col-md-6">
+                <label for="type" class="text-uppercase">Typ Nadwozia</label>
+                <select class="form-select" id="type" aria-label="Default select example">
+                  <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="color" class="text-uppercase">Kolor</label>
+                <input type="text" name="color" class="form-control" id="color">
+              </div>
+              <div class="col-md-6">
+                <label for="doors" class="text-uppercase">Ilość drzwi</label>
+                <input type="number" name="doors" class="form-control" id="doors" min="2" max="9">
+              </div>
+              <div class="col-md-6">
+                <label for="seats" class="text-uppercase">Ilość miejsc</label>
+                <input type="number" name="seats" class="form-control" id="seats" min="1" max="30">
+              </div>
+
+              <h4>Zdjęcia</h4>
+              <app-file-upload></app-file-upload>
+
+              <h4>Opis samochodu</h4>
+              <div class="col-md-12">
+                <label for="title" class="text-uppercase">Tytuł</label>
+                <input type="text" name="title" class="form-control" id="title">
+              </div>
+              <div class="col-md-12">
+                <label for="describe" class="text-uppercase">Opis</label>
+                <textarea name="describe" class="form-control" rows="8" id="describe"></textarea>
+              </div>
+              <div class="col-md-12">
+                <label for="price" class="text-uppercase">Cena</label>
+                <input type="number" name="price" class="form-control" id="price">
+              </div>
+              <div class="col-md-12">
+                <label for="crash" class="text-uppercase">Bezwypadkowy</label>
+                <select class="form-select" id="crash" aria-label="Default select example">
+                  <option [ngValue]="true">Tak</option>
+                  <option [ngValue]="false">Nie</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="text-uppercase">Telefon</label>
+                <input type="number" name="phone" class="form-control" id="phone">
+              </div>
+              <div class="col-md-6">
+                <label for="location" class="text-uppercase">Lokalizacja</label>
+                <input type="text" name="location" class="form-control" id="location">
+              </div>
+
+
+            </div>
+            <button type="submit" class="btn btn-login float-end mt-2">Zapisz</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

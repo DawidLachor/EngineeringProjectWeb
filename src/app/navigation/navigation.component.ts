@@ -28,9 +28,9 @@ export class NavigationComponent implements OnInit {
   //Przekierowanie
   navigation() {
     if (this.service.jwt){
-      this.router.navigate(['/wallet']);
+      this.router.navigate(['/']);
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
   }
 

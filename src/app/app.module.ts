@@ -11,6 +11,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import { RegistrationComponent } from './registration/registration.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AddAnnouncementComponent } from './add-announcement/add-announcement.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomepageComponent } from './homepage/homepage.component';
     LoginComponent,
     RegistrationComponent,
     NavigationComponent,
-    HomepageComponent
+    HomepageComponent,
+    AddAnnouncementComponent,
+    FileUploadComponent
   ],
   imports: [
     AppRoutingModule,
