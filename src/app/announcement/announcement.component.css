@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 .clear{
   text-decoration: none;
 }
+.price {
+  background: #FF5900FF;
+  border-radius: 10px;
+  text-align: center;
 
+}
 .login-block{
   background: #DE6262;
   background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);
@@ -11,10 +15,10 @@
   width:100%;
   padding : 50px 0;
 }
-.banner-sec{  min-height:530px; object-fit: contain; border-radius: 0 10px 10px 0; padding:0;}
+.banner-sec{min-height:530px; object-fit: contain; border-radius: 0 10px 10px 0; padding:0;}
 .banner-sec img{min-height:530px; object-fit: fill;}
 .container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
-.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-inner{border-radius:10px 10px 10px 10px;}
 .carousel-caption{text-align:left; left:5%;}
 .login-sec{padding: 50px 30px; position:relative;}
 .login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}

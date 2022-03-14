@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AddAnnouncementComponent } from './add-announcement/add-announcement.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AnnouncementComponent } from './announcement/announcement.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     NavigationComponent,
     HomepageComponent,
     AddAnnouncementComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    AnnouncementComponent
   ],
   imports: [
     AppRoutingModule,
