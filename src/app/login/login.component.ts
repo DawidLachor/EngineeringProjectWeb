@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('authenticationToken', response.authenticationToken)
 
+        window.location.reload();
         this.router.navigate(['/']);
+
       },
       (error : HttpErrorResponse) => {
         this.signin = true;

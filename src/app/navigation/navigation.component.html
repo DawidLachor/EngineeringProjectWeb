@@ -1,13 +1,20 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid pb-3 pt-3">
-    <a class="navbar-brand" (click)="navigation()">EngineeringProjectWeb</a>
+    <a class="navbar-brand brand" (click)="navigation()">EngineeringProjectWeb</a>
     <div class="dropdown">
+      <button *ngIf="signin"  class="btn btn-secondary me-3" type="button" aria-expanded="false">
+        <a routerLink="/dodanie_ogloszenia" class="clear link">Dodaj ogłoszenie</a>
+      </button>
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Konto
       </button>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+      <ul *ngIf="!signin" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" routerLink="/login">Zaloguj</a></li>
         <li><a class="dropdown-item" routerLink="/rejestracja">Zarejestruj</a></li>
+      </ul>
+      <ul *ngIf="signin" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" routerLink="/konto">Konto</a></li>
+        <li><a class="dropdown-item" routerLink="/" (click)="logout()">Wyloguj</a></li>
       </ul>
     </div>
   </div>

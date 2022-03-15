@@ -43,9 +43,11 @@
 
           <div class="form-check mt-2">
 
-            <button type="submit" class="btn btn-login float-end">Zarejestruj się</button>
+            <button type="submit" [disabled]="addForm.invalid" class="btn btn-login float-end">Zarejestruj się</button>
           </div>
-          <div *ngIf="signup"><p class="text-danger text-center">Niepoprawne lub brak danych</p></div>
+          <div *ngIf="signup">
+            <p class="text-danger text-center">Email jest niepoprawny lub nazwę użytkownika jest używana</p>
+          </div>
         </form>
       </div>
       <div class="col-md-7 banner-sec d-flex align-items-center">

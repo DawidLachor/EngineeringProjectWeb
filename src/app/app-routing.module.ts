@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'rejestracja', component: RegistrationComponent},
   {path: 'homepage', component: HomepageComponent},
   {path: 'dodanie_ogloszenia', component: AddAnnouncementComponent},
-  {path: 'ogloszenie', component: AnnouncementComponent},
+  {path: 'ogloszenia/:id', component: AnnouncementComponent},
   {path: 'ogloszenia', component: AnnouncementsComponent}
 ];
 

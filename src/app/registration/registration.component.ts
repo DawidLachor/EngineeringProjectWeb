@@ -12,6 +12,7 @@ import {RegisterService} from "./registration.service.ta";
 export class RegistrationComponent implements OnInit {
 
   signup: boolean = false;
+  message: string | undefined;
   constructor(private registerService: RegisterService, private router: Router) {
   }
   ngOnInit(): void {
@@ -22,6 +23,7 @@ export class RegistrationComponent implements OnInit {
       value => {
         this.router.navigate([''])
       },error => {
+        this.message = error.message
         this.signup=true;
       }
     )

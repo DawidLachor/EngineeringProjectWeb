@@ -11,8 +11,10 @@ export class NavigationComponent implements OnInit {
 
   constructor(private router: Router, public service: NavigationService) { }
 
+  signin: boolean = false;
+
   ngOnInit(): void {
-    this.service.checkJWT();
+   this.signin = this.service.checkJWT();
   }
 
   //Wylogowanie
@@ -20,9 +22,11 @@ export class NavigationComponent implements OnInit {
     //Usunięcie tokena JWT z cooki
     localStorage.removeItem('authenticationToken');
     //Przekierowanie do strony startowej
+    window.location.reload();
     this.router.navigate(['']);
     //Sprawdzenia tokena
     this.service.checkJWT()
+
   }
 
   //Przekierowanie

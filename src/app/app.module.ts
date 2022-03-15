@@ -16,6 +16,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { FiltrComponent } from './filtr/filtr.component';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,10 @@ import { FiltrComponent } from './filtr/filtr.component';
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDgkjgwLEnrfti1MejIfZUYk1Jx3ZozPxg'
+    })
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

@@ -16,7 +16,9 @@
                   <p class="col-3 price">Cena: 50 000zł</p>
                   <p>Marka Model</p>
                   <p>Rok produkcji, przebieg, Pojemność silnika, paliwo</p>
-                  <p>Lokalizacja</p>
+                  <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
                 </div>
               </div>
             </div>

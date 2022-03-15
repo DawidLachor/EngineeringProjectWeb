@@ -12,7 +12,7 @@ export class RegisterService {
 
   constructor(private http: HttpClient) {}
 
-  public registerService(register: RegisterRequest): Observable<void>{
-    return this.http.post<void>('http://localhost:8080/api/registration', register);
+  public registerService(register: RegisterRequest): Observable<string>{
+    return this.http.post<string>('http://localhost:8080/api/registration', register);
   }
 }
