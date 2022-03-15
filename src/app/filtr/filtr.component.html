@@ -1,0 +1,141 @@
+<section class="block">
+  <div class="container">
+    <div class="row">
+      <div class="login-sec">
+        <form class="login-form" #addForm="ngForm">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="type" class="text-uppercase">Typ Nadwozia</label>
+              <select class="form-select" id="type" aria-label="Default select example">
+                <!--                <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="gas" class="text-uppercase">Paliwo</label>
+              <select class="form-select" id="gas" aria-label="Default select example">
+                <!--                <option *ngFor="let typeEngine of typeEngines" [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="marka" class="text-uppercase">Marka</label>
+              <select name="Brand" class="form-select" id="marka" aria-label="Default select example">
+                <!--                <option *ngFor="let brand of brands" [ngValue]="brand.id" [selected]="brand">{{ brand.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="model" class="text-uppercase">Model</label>
+              <select name="model" class="form-select" id="model" aria-label="Default select example">
+                <!--                      [(ngModel)]="idModelSelector" [disabled]="!disabledModel"-->
+                <!--                      (ngModelChange)="getGeneration($event)">-->
+                <!--                <option *ngFor="let model of models" [ngValue]="model.id">{{ model.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="model" class="text-uppercase">Generacja</label>
+              <select class="form-select" id="generation" aria-label="Default select example">
+                <!--                      [disabled]="!disabledGeneration">-->
+                <!--                <option *ngFor="let generation of generations"-->
+                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <label class="text-uppercase">Cena</label>
+                <div class="col-md-6">
+                  <input type="number" id="priceFrom" name="priceFrom" class="form-control" placeholder="od">
+                </div>
+                <div class="col-md-6">
+                  <input type="number" id="priceTo" name="priceTo" class="form-control" placeholder="do">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <label class="text-uppercase">Przebieg</label>
+                <div class="col-md-6">
+                  <input type="number" id="mileageFrom" name="mileageFrom" class="form-control" placeholder="od">
+                </div>
+                <div class="col-md-6">
+                  <input type="number" id="mileageTo" name="mileageTo" class="form-control" placeholder="do">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <label class="text-uppercase">Produkcja</label>
+                <div class="col-md-6">
+                  <input type="number" id="productionFrom" name="productionFrom" class="form-control"
+                         placeholder="od">
+                </div>
+                <div class="col-md-6">
+                  <input type="number" id="productionTo" name="productionTo" class="form-control" placeholder="do">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="location" class="text-uppercase">Lokalizacja</label>
+              <input class="form-control" id="location" aria-label="Default select example">
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <label class="text-uppercase">Moc</label>
+                <div class="col-md-6">
+                  <input type="number" id="powerFrom" name="productionFrom" class="form-control"
+                         placeholder="od">
+                </div>
+                <div class="col-md-6">
+                  <input type="number" id="powerTo" name="productionTo" class="form-control" placeholder="do">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <label class="text-uppercase">Pojemność</label>
+                <div class="col-md-6">
+                  <input type="number" id="combustionFrom" name="productionFrom" class="form-control"
+                         placeholder="od">
+                </div>
+                <div class="col-md-6">
+                  <input type="number" id="combustionTo" name="productionTo" class="form-control" placeholder="do">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="status" class="text-uppercase">Status</label>
+              <select class="form-select" id="status" aria-label="Default select example">
+                <!--                      [disabled]="!disabledGeneration">-->
+                <!--                <option *ngFor="let generation of generations"-->
+                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="status" class="text-uppercase">Skrzynia biegów</label>
+              <select class="form-select" id="transmission" aria-label="Default select example">
+                <!--                      [disabled]="!disabledGeneration">-->
+                <!--                <option *ngFor="let generation of generations"-->
+                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="status" class="text-uppercase">Liczba miejsc</label>
+              <select class="form-select" id="seats" aria-label="Default select example">
+                <!--                      [disabled]="!disabledGeneration">-->
+                <!--                <option *ngFor="let generation of generations"-->
+                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="status" class="text-uppercase">Liczba drzwi</label>
+              <select class="form-select" id="doors" aria-label="Default select example">
+                <!--                      [disabled]="!disabledGeneration">-->
+                <!--                <option *ngFor="let generation of generations"-->
+                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-login float-end mt-2">Szukaj</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

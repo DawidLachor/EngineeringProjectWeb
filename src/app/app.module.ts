@@ -14,6 +14,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AddAnnouncementComponent } from './add-announcement/add-announcement.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { FiltrComponent } from './filtr/filtr.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AnnouncementComponent } from './announcement/announcement.component';
     HomepageComponent,
     AddAnnouncementComponent,
     FileUploadComponent,
-    AnnouncementComponent
+    AnnouncementComponent,
+    AnnouncementsComponent,
+    FiltrComponent
   ],
   imports: [
     AppRoutingModule,

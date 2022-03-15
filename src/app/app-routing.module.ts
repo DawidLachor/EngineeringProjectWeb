@@ -5,6 +5,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import {HomepageComponent} from "./homepage/homepage.component";
 import {AddAnnouncementComponent} from "./add-announcement/add-announcement.component";
 import {AnnouncementComponent} from "./announcement/announcement.component";
+import {AnnouncementsComponent} from "./announcements/announcements.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/homepage', pathMatch:'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'rejestracja', component: RegistrationComponent},
   {path: 'homepage', component: HomepageComponent},
   {path: 'dodanie_ogloszenia', component: AddAnnouncementComponent},
-  {path: 'ogloszenie', component: AnnouncementComponent}
+  {path: 'ogloszenie', component: AnnouncementComponent},
+  {path: 'ogloszenia', component: AnnouncementsComponent}
 ];
 
 @NgModule({
