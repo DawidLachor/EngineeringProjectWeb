@@ -12,11 +12,13 @@ import { RegistrationComponent } from './registration/registration.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AddAnnouncementComponent } from './add-announcement/add-announcement.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { FiltrComponent } from './filtr/filtr.component';
 import {AgmCoreModule} from "@agm/core";
+import { MyAnnouncementComponent } from './my-announcement/my-announcement.component';
+import { EdytujComponent } from './edytuj/edytuj.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,12 @@ import {AgmCoreModule} from "@agm/core";
     NavigationComponent,
     HomepageComponent,
     AddAnnouncementComponent,
-    FileUploadComponent,
     AnnouncementComponent,
     AnnouncementsComponent,
-    FiltrComponent
+    FiltrComponent,
+    MyAnnouncementComponent,
+    EdytujComponent,
+    AccountComponent
   ],
   imports: [
     AppRoutingModule,
@@ -37,7 +41,8 @@ import {AgmCoreModule} from "@agm/core";
     HttpClientModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDgkjgwLEnrfti1MejIfZUYk1Jx3ZozPxg'
+      apiKey: 'AIzaSyDgkjgwLEnrfti1MejIfZUYk1Jx3ZozPxg',
+      libraries: ['places']
     })
   ],
   providers: [LoginService],

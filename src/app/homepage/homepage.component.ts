@@ -6,6 +6,8 @@ import {TypeEngine} from "../interfaca/type-engine";
 import {Brand} from "../interfaca/brand";
 import { Model } from '../interfaca/model';
 import {Generation} from "../interfaca/generation";
+import {NgForm} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -19,11 +21,13 @@ export class HomepageComponent implements OnInit {
   models: Model[] | undefined;
   idBrandSelector: BodyType | undefined;
   idModelSelector: Model | undefined;
+  idBodyTypeSelector: BodyType | undefined;
+  idTypeEnginesSelector: TypeEngine | undefined;
   generations: Generation[] | undefined;
   disabledModel: boolean;
   disabledGeneration: boolean;
 
-  constructor(private homepage: HomepageService) {
+  constructor(private homepage: HomepageService, private router: Router) {
     this.homepage.getTypeBody().subscribe((bodyTypes: BodyType[]) => {
         this.bodyTypes = bodyTypes;
       }
@@ -43,6 +47,11 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  search(searchForm: NgForm): void {
+    // this.stateService.data = {searchForm};
+    this.router.navigate(['/ogloszenia']);
   }
 
   getModel(brandId: number) {

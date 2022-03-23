@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Image} from "../interfaca/image";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,10 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(file: File, idAnnotation: number ): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
+    formData.append('announcementId', idAnnotation.toString());
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
@@ -21,7 +23,7 @@ export class FileUploadService {
     return this.http.request(req);
   }
 
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+  getFiles(id: number): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.baseUrl}/${id}/files`);
   }
 }

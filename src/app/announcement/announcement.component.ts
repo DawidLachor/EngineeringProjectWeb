@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
+import {Announcements} from "../interfaca/announcements";
+import {Announcement} from "../interfaca/announcement";
+import {ActivatedRoute} from "@angular/router";
+import { AnnouncementService } from './announcement.service';
+import {MapsAPILoader} from "@agm/core";
+import {FileUploadService} from "../add-announcement/file-upload.service";
+import {Image} from "../interfaca/image";
 
 @Component({
   selector: 'app-announcement',
@@ -7,12 +14,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnouncementComponent implements OnInit {
 
-  lat = 51.678418;
-  lng = 7.809007;
+  announcement: Announcement | undefined;
+  id: number;
+  // @ts-ignore
+  image: Image[];
+  // @ts-ignore
+  firstImage : Image;
+  // @ts-ignore
+  imagelength: number;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private  service: AnnouncementService, private imageService: FileUploadService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+    this.id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    console.log(this.id);
+    service.getAnnouncement(this.id).subscribe((announcement: Announcement) => {
+      this.announcement = announcement;
+      console.log(this.announcement);
+      imageService.getFiles(this.id).subscribe( (image: Image[]) => {
+        this.image = image;
+        this.firstImage = this.image[0];
+        this.imagelength = image.length;
+        // this.image.shift();
+        console.log(this.image);
+      })
+      }
+    )
+  }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -7,35 +7,36 @@
             <div class="col-md-3">
               <label for="type" class="text-uppercase">Typ Nadwozia</label>
               <select class="form-select" id="type" aria-label="Default select example">
-                <!--                <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>-->
+                                <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>
               </select>
             </div>
             <div class="col-md-3">
               <label for="gas" class="text-uppercase">Paliwo</label>
               <select class="form-select" id="gas" aria-label="Default select example">
-                <!--                <option *ngFor="let typeEngine of typeEngines" [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>-->
+                                <option *ngFor="let typeEngine of typeEngines" [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>
               </select>
             </div>
             <div class="col-md-3">
               <label for="marka" class="text-uppercase">Marka</label>
-              <select name="Brand" class="form-select" id="marka" aria-label="Default select example">
-                <!--                <option *ngFor="let brand of brands" [ngValue]="brand.id" [selected]="brand">{{ brand.name }}</option>-->
+              <select name="mark" class="form-select" id="marka" aria-label="Default select example"
+                      [(ngModel)]="idBrandSelector" (ngModelChange)="getModel($event)">
+                <option *ngFor="let brand of brands" [ngValue]="brand.id" [selected]="brand">{{ brand.name }}</option>
               </select>
             </div>
             <div class="col-md-3">
               <label for="model" class="text-uppercase">Model</label>
-              <select name="model" class="form-select" id="model" aria-label="Default select example">
-                <!--                      [(ngModel)]="idModelSelector" [disabled]="!disabledModel"-->
-                <!--                      (ngModelChange)="getGeneration($event)">-->
-                <!--                <option *ngFor="let model of models" [ngValue]="model.id">{{ model.name }}</option>-->
+              <select name="model" class="form-select" id="model" aria-label="Default select example"
+                      [(ngModel)]="idModelSelector" [disabled]="!disabledModel"
+                      (ngModelChange)="getGeneration($event)">
+                <option *ngFor="let model of models" [ngValue]="model.id">{{ model.name }}</option>
               </select>
             </div>
             <div class="col-md-3">
               <label for="model" class="text-uppercase">Generacja</label>
-              <select class="form-select" id="generation" aria-label="Default select example">
-                <!--                      [disabled]="!disabledGeneration">-->
-                <!--                <option *ngFor="let generation of generations"-->
-                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
+              <select class="form-select" id="generation" aria-label="Default select example"
+                      [disabled]="!disabledGeneration">
+                <option *ngFor="let generation of generations"
+                        [ngValue]="generation.id" ngModel>{{ generation.name }}</option>
               </select>
             </div>
             <div class="col-md-3">
@@ -101,15 +102,7 @@
               </div>
             </div>
             <div class="col-md-3">
-              <label for="status" class="text-uppercase">Status</label>
-              <select class="form-select" id="status" aria-label="Default select example">
-                <!--                      [disabled]="!disabledGeneration">-->
-                <!--                <option *ngFor="let generation of generations"-->
-                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label for="status" class="text-uppercase">Skrzynia biegów</label>
+              <label for="transmission" class="text-uppercase">Skrzynia biegów</label>
               <select class="form-select" id="transmission" aria-label="Default select example">
                 <!--                      [disabled]="!disabledGeneration">-->
                 <!--                <option *ngFor="let generation of generations"-->
@@ -117,20 +110,14 @@
               </select>
             </div>
             <div class="col-md-3">
-              <label for="status" class="text-uppercase">Liczba miejsc</label>
-              <select class="form-select" id="seats" aria-label="Default select example">
-                <!--                      [disabled]="!disabledGeneration">-->
-                <!--                <option *ngFor="let generation of generations"-->
-                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
-              </select>
+              <label for="seats" class="text-uppercase">Liczba miejsc</label>
+
+              <input type="number" id="seats" name="seats" class="form-control" >
+
             </div>
             <div class="col-md-3">
-              <label for="status" class="text-uppercase">Liczba drzwi</label>
-              <select class="form-select" id="doors" aria-label="Default select example">
-                <!--                      [disabled]="!disabledGeneration">-->
-                <!--                <option *ngFor="let generation of generations"-->
-                <!--                        [ngValue]="generation.id">{{ generation.name }}</option>-->
-              </select>
+              <label for="doors" class="text-uppercase">Liczba drzwi</label>
+              <input type="number" id="doors" name="doors" class="form-control" >
             </div>
           </div>
           <button type="submit" class="btn btn-login float-end mt-2">Szukaj</button>

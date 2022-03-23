@@ -11,48 +11,48 @@
               <h4>Podstawowe dane</h4>
               <div class="col-md-6">
                 <label for="vin" class="text-uppercase">VIN</label>
-                <input type="text" ngModel name="vin" class="form-control" id="vin" placeholder="VIN" required>
+                <input type="text" ngModel name="vin" class="form-control" id="vin" placeholder="VIN" value="{{addAnnouncementData?.vin}}" >
               </div>
               <div class="col-md-6">
                 <label for="mileage" class="text-uppercase">Przebieg</label>
-                <input type="text" ngModel name="mileage" class="form-control" id="mileage" placeholder="Przebieg" required>
+                <input type="text" ngModel name="mileage" class="form-control" id="mileage" placeholder="Przebieg" value="{{addAnnouncementData?.mileage}}" >
               </div>
               <div class="col-md-6">
                 <label for="registration_number" class="text-uppercase">Numer rejestracji</label>
-                <input type="text" ngModel name="registration_number" class="form-control" id="registration_number" placeholder="KW58742" required>
+                <input type="text" ngModel name="registration_number" class="form-control" id="registration_number" value="{{addAnnouncementData?.registration_number}}" >
               </div>
               <div class="col-md-6">
                 <label for="first_registration" class="text-uppercase">Pierwsza rejestracja</label>
-                <input type="date" ngModel name="first_registration" class="form-control" id="first_registration" required>
+                <input type="date" ngModel name="first_registration" class="form-control" id="first_registration" value="{{addAnnouncementData?.first_registration}}" >
               </div>
               <div class="col-md-6">
                 <label for="year_of_production" class="text-uppercase">Rok produkcji</label>
-                <input type="month" ngModel name="year_of_production" class="form-control" id="year_of_production" required>
+                <input type="month" ngModel name="year_of_production" class="form-control" id="year_of_production" value="{{addAnnouncementData?.year_of_production}}" >
               </div>
               <div class="col-md-6">
                 <label for="country_of_production" class="text-uppercase">Kraj produkcji</label>
-                <input type="text" ngModel name="country_of_production" class="form-control" id="country_of_production" required>
+                <input type="text" ngModel name="country_of_production" class="form-control" id="country_of_production" value="{{addAnnouncementData?.country_of_production}}" >
               </div>
 
               <div class="col-md-6">
                 <label for="marka" class="text-uppercase">Marka</label>
                 <select name="brand" class="form-select" id="marka" aria-label="Default select example"
-                        [(ngModel)]="idBrandSelector" (ngModelChange)="getModel($event)" required>
+                        [(ngModel)]="idBrandSelector" (ngModelChange)="getModel($event)" [selectedIndex]="addAnnouncementData?.brand" >
                   <option *ngFor="let brand of brands" [ngValue]="brand.id">{{ brand.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="model" class="text-uppercase">Model</label>
                 <select name="model" class="form-select" id="model" aria-label="Default select example"
-                        [(ngModel)]="idModelSelector" [disabled]="!disabledModel"
-                        (ngModelChange)="getGeneration($event)" required>
+                        [(ngModel)]="idModelSelector"
+                        (ngModelChange)="getGeneration($event)" [selectedIndex]="addAnnouncementData?.model" >
                   <option *ngFor="let model of models" [ngValue]="model.id">{{ model.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="model" class="text-uppercase">Generacja</label>
                 <select class="form-select" id="generation" ngModel name="generation" aria-label="Default select example"
-                        [disabled]="!disabledGeneration" required>
+                        [selectedIndex]="addAnnouncementData?.generation" >
                   <option *ngFor="let generation of generations"
                           [ngValue]="generation.id">{{ generation.name }}</option>
                 </select>
@@ -61,24 +61,24 @@
               <h4>Silnik</h4>
               <div class="col-md-6">
                 <label for="gas" class="text-uppercase">Paliwo</label>
-                <select class="form-select" id="gas" ngModel name="gas" aria-label="Default select example" required>
+                <select class="form-select" id="gas" ngModel name="gas" aria-label="Default select example" [selectedIndex]="addAnnouncementData?.gas" >
                   <option *ngFor="let typeEngine of typeEngines"
                           [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="power" class="text-uppercase">Moc</label>
-                <input type="number" ngModel name="power" class="form-control" id="power" required>
+                <input type="number" ngModel name="power" class="form-control" id="power" value="{{addAnnouncementData?.power}}" >
               </div>
 
               <div class="col-md-6">
                 <label for="capacity" class="text-uppercase">Pojemność</label>
-                <input type="number" ngModel name="capacity" class="form-control" id="capacity" required>
+                <input type="number" ngModel name="capacity" class="form-control" id="capacity" value="{{addAnnouncementData?.capacity}}" >
               </div>
 
               <div class="col-md-6">
                 <label for="transmission" class="text-uppercase">Skrzynia biegów</label>
-                <select class="form-select" ngModel name="transmission"  id="transmission" aria-label="Default select example" required>
+                <select class="form-select" ngModel name="transmission"  id="transmission" aria-label="Default select example" [selectedIndex]="addAnnouncementData?.transmission">
                   <option [ngValue]="1">Manualna</option>
                   <option [ngValue]="2">Automatyczna</option>
                 </select>
@@ -87,21 +87,21 @@
               <h4>Nadwozie</h4>
               <div class="col-md-6">
                 <label for="type" class="text-uppercase">Typ Nadwozia</label>
-                <select class="form-select" id="type" ngModel name="bodyType" aria-label="Default select example" required>
+                <select class="form-select" id="type" ngModel name="bodyType" aria-label="Default select example"  [selectedIndex]="addAnnouncementData?.bodyType">
                   <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="color" class="text-uppercase">Kolor</label>
-                <input type="text" ngModel name="color" class="form-control" id="color" required>
+                <input type="text" ngModel name="color" class="form-control" id="color" value="{{addAnnouncementData?.color}}" >
               </div>
               <div class="col-md-6">
                 <label for="doors" class="text-uppercase">Ilość drzwi</label>
-                <input type="number" ngModel name="doors" class="form-control" id="doors" min="2" max="9" required>
+                <input type="number" ngModel name="doors" class="form-control" id="doors" min="2" max="9"  value="{{addAnnouncementData?.doors}}">
               </div>
               <div class="col-md-6">
                 <label for="seats" class="text-uppercase">Ilość miejsc</label>
-                <input type="number" ngModel name="seats" class="form-control" id="seats" min="1" max="30" required>
+                <input type="number" ngModel name="seats" class="form-control" id="seats" min="1" max="30"  value="{{addAnnouncementData?.seats}}" >
               </div>
 
               <h4>Zdjęcia</h4>
@@ -131,30 +131,30 @@
               <h4>Opis samochodu</h4>
               <div class="col-md-12">
                 <label for="title" class="text-uppercase">Tytuł</label>
-                <input type="text" ngModel name="title" class="form-control" id="title" required>
+                <input type="text" ngModel name="title" class="form-control" id="title"  value="{{addAnnouncementData?.title}}" >
               </div>
               <div class="col-md-12">
                 <label for="describe" class="text-uppercase">Opis</label>
-                <textarea ngModel name="describe" class="form-control" rows="8" id="describe" required></textarea>
+                <textarea ngModel name="describe" class="form-control" rows="8" id="describe"  >{{addAnnouncementData?.describe}}</textarea>
               </div>
               <div class="col-md-12">
                 <label for="price" class="text-uppercase">Cena</label>
-                <input type="number" ngModel name="price" class="form-control" id="price" required>
+                <input type="number" ngModel name="price" class="form-control" id="price"  value="{{addAnnouncementData?.price}}" >
               </div>
               <div class="col-md-12">
                 <label for="crash" class="text-uppercase">Bezwypadkowy</label>
-                <select class="form-select" id="crash" ngModel name="crash" aria-label="Default select example" required>
+                <select class="form-select" id="crash" ngModel name="crash" aria-label="Default select example" [selectedIndex]="crash" >
                   <option [ngValue]="true">Tak</option>
                   <option [ngValue]="false">Nie</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="phone" class="text-uppercase">Telefon</label>
-                <input type="number" name="phone" ngModel class="form-control" id="phone" required>
+                <input type="number" name="phone" ngModel class="form-control" id="phone"  value="{{addAnnouncementData?.phone}}" >
               </div>
               <div class="col-md-6">
                 <label for="location" class="text-uppercase">Lokalizacja</label>
-                <input type="text" name="location" ngModel class="form-control" id="location" required>
+                <input type="text" name="location" ngModel class="form-control" id="location"  value="{{addAnnouncementData?.location}}">
               </div>
 
 

@@ -3,23 +3,33 @@
     <div class="row">
       <div class="login-sec">
         <div class="row">
-          <h3 class="col-9 p-3">Title</h3>
-          <h3 class="col-3 p-3 price">Cena: 50 000 zł</h3>
+          <h3 class="col-9 p-3">{{announcement?.title}}</h3>
+          <h3 class="col-3 p-3 price">Cena: {{announcement?.price}} zł</h3>
         </div>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+
+            <button type="button" class="active" *ngFor='let preview of image; let i = index; let isfirst = first'
+                    data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="i"
                     aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+            <!--            <button type="button" class=  data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="imagelength"-->
+            <!--                    aria-label="Slide 2"></button>-->
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img
-                src="https://images.pexels.com/photos/1149056/pexels-photo-1149056.jpeg?cs=srgb&dl=pexels-scosche-1149056.jpg&fm=jpg"
-                class="d-block w-100 h-100" alt="...">
+              <div>
+                <img
+                  src="{{image[0]?.url}}"
+                  class="d-block w-100 h-100" alt="{{image[0]?.name}}">
+              </div>
+            </div>
+            <div>
+              <div class="carousel-item" *ngFor='let preview of image'>
+
+                <img
+                  src="{{preview.url}}"
+                  class="d-block w-100 h-100" alt="{{preview.name}}">
+              </div>
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -37,68 +47,68 @@
           <h4>Szczegóły</h4>
           <div class="row">
             <p class="col-3">Marka</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.mark}}</p>
             <p class="col-3">Uszkodzony</p>
-            <p class="col-3"></p>
+            <p *ngIf="announcement?.crash" class="col-3">Tak</p>
+            <p *ngIf="!announcement?.crash" class="col-3">Nie</p>
           </div>
           <div class="row">
             <p class="col-3">Model</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.model}}</p>
             <p class="col-3">Typ</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.typeBody}}</p>
           </div>
           <div class="row">
             <p class="col-3">Rok produkcji</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.year_of_production}}</p>
             <p class="col-3">Liczba drzwi</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.doors}}</p>
           </div>
           <div class="row">
             <p class="col-3">Przebieg</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.mileage}}</p>
             <p class="col-3">Liczba miejsc</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.seats}}</p>
           </div>
           <div class="row">
             <p class="col-3">Pojemność</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.capacity}}</p>
             <p class="col-3">Kolor</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.color}}</p>
           </div>
           <div class="row">
             <p class="col-3">Rodzaj paliwa</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.gas}}</p>
             <p class="col-3">Numer rejestracji</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.registration}}</p>
           </div>
           <div class="row">
             <p class="col-3">Moc</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.power}}</p>
             <p class="col-3">Pierwsza rejestracja</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.first_registration}}</p>
           </div>
           <div class="row">
             <p class="col-3">Skrzynia biegów</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.transmission}}</p>
             <p class="col-3">VIN</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.vin}}</p>
           </div>
         </div>
 
         <div class="describe">
           <h4>Opis</h4>
-          <p>lore, ipsum dolor sit amet, consectet </p>
+          <p>{{announcement?.description}}</p>
         </div>
 
         <div class="contact">
           <h4>Kontakt</h4>
           <div class="row">
             <p class="col-3">Adres</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.location}}</p>
             <p class="col-3">Telefon</p>
-            <p class="col-3"></p>
+            <p class="col-3">{{announcement?.phone}}</p>
           </div>
-        MAPA
         </div>
 
       </div>

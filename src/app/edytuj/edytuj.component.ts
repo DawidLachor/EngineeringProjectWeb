@@ -4,21 +4,22 @@ import {TypeEngine} from "../interfaca/type-engine";
 import {Brand} from "../interfaca/brand";
 import {Model} from "../interfaca/model";
 import {Generation} from "../interfaca/generation";
-import {HomepageService} from "../homepage/homepage.service";
-import {NgForm} from "@angular/forms";
-import {AddAnnouncementService} from "./add-announcement.service";
-
 import {Observable} from "rxjs";
-import {FileUploadService} from "./file-upload.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HomepageService} from "../homepage/homepage.service";
+import {AddAnnouncementService} from "../add-announcement/add-announcement.service";
+import {FileUploadService} from "../add-announcement/file-upload.service";
+import {NgForm} from "@angular/forms";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {EdytujService} from "./edytuj.service";
+import {AddAnnouncement} from "../interfaca/add-announcement";
 
 @Component({
-  selector: 'app-add-announcement',
-  templateUrl: './add-announcement.component.html',
-  styleUrls: ['./add-announcement.component.css']
+  selector: 'app-edytuj',
+  templateUrl: './edytuj.component.html',
+  styleUrls: ['./edytuj.component.css']
 })
-export class AddAnnouncementComponent implements OnInit {
+export class EdytujComponent implements OnInit {
 
   bodyTypes: BodyType[] | undefined;
   typeEngines: TypeEngine[] | undefined;
@@ -36,8 +37,12 @@ export class AddAnnouncementComponent implements OnInit {
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  id: number;
+  // @ts-ignore
+  addAnnouncementData: AddAnnouncement;
+  crash: number | undefined
 
-  constructor(private router: Router, private homepage: HomepageService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
+  constructor(private route: ActivatedRoute, private router: Router, private homepage: HomepageService, private editService: EdytujService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
     this.homepage.getTypeBody().subscribe((bodyTypes: BodyType[]) => {
         this.bodyTypes = bodyTypes;
       }
@@ -54,6 +59,25 @@ export class AddAnnouncementComponent implements OnInit {
     );
     this.disabledModel = false;
     this.disabledGeneration = false;
+
+    this.id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    editService.editAnnouncement(this.id).subscribe((addAnnouncement: AddAnnouncement) => {
+      this.addAnnouncementData = addAnnouncement;
+      this.getModel(this.addAnnouncementData.brand)
+      this.getGeneration(this.addAnnouncementData.model)
+      this.addAnnouncementData.transmission -= 1;
+      this.addAnnouncementData.brand -= 1;
+      this.addAnnouncementData.model -= 1;
+      this.addAnnouncementData.generation -= 1;
+      this.addAnnouncementData.bodyType -= 1;
+      this.addAnnouncementData.gas -= 1;
+      if(this.addAnnouncementData.crash){
+        this.crash = 0
+      } else {
+        this.crash = 1
+      }
+      console.log(this.addAnnouncementData)
+    })
   }
 
   ngOnInit(): void {
@@ -82,9 +106,8 @@ export class AddAnnouncementComponent implements OnInit {
     console.log(addForm.value);
     this.addAnnouncementService.addAnnouncement(addForm.value).subscribe((id : number) =>{
       this.uploadFiles(id)
-      });
+    });
     this.router.navigate(['']);
-    window.location.reload();
   }
 
   selectFiles(event: any): void {
@@ -136,4 +159,5 @@ export class AddAnnouncementComponent implements OnInit {
       });
     }
   }
+
 }

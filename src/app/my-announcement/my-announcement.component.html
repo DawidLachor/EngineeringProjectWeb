@@ -1,0 +1,58 @@
+<div class="background">
+
+  <section class="block">
+    <div class="container">
+      <div class="row">
+        <div class="login-sec">
+          <h3>Moje ogłoszenia</h3>
+          <div class="pt-3" *ngFor="let announcement of announcements">
+              <div class="row announcement-board">
+                <img
+                  src="{{announcement.imageUrl}}"
+                  class="announcement-image col-3" alt="..." routerLink="/ogloszenia/{{announcement.id}}">
+                <div class="col-9">
+
+                  <div class="row">
+                    <h4 class="col-8" routerLink="/ogloszenia/{{announcement.id}}">{{announcement.title}}</h4>
+                    <p class="col-3 price" routerLink="/ogloszenia/{{announcement.id}}">Cena: {{announcement.price}}zł</p>
+                    <div class="col-9" routerLink="/ogloszenia/{{announcement.id}}">
+                      <p class="info">{{announcement.mark}} {{announcement.model}}</p>
+                      <p class="info">Wyprodukowany: {{announcement.year_of_production}}
+                      <p class="info">Przebieg: {{announcement.mileage}}</p>
+                      <p class="info">Pojemność silnika {{announcement.capacity}}</p>
+                      <p class="info">Rodzaj paliwa: {{announcement.gas}}</p>
+                      <p class="info">Lokalizacja: {{announcement.location}}</p>
+                    </div>
+                    <div class="col-3 row">
+                      <button type="submit" class="btn btn-login float-end mt-2" routerLink="/edytuj/{{announcement.id}}">Edytuj</button>
+                      <button (click)="delete(announcement.id)" class="btn btn-login float-end mt-2">Usuń</button>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+          </div>
+
+<!--          <div class="pt-4 ">-->
+<!--            <nav aria-label="...">-->
+<!--              <ul class="pagination justify-content-center">-->
+<!--                <li class="page-item disabled">-->
+<!--                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Wcześniejsza</a>-->
+<!--                </li>-->
+<!--                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                <li class="page-item active" aria-current="page">-->
+<!--                  <a class="page-link" href="#">2</a>-->
+<!--                </li>-->
+<!--                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                <li class="page-item">-->
+<!--                  <a class="page-link" href="#">Następna</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </nav>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

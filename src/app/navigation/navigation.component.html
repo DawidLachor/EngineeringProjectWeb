@@ -3,6 +3,9 @@
     <a class="navbar-brand brand" (click)="navigation()">EngineeringProjectWeb</a>
     <div class="dropdown">
       <button *ngIf="signin"  class="btn btn-secondary me-3" type="button" aria-expanded="false">
+        <a routerLink="/moje-ogloszenia" class="clear link">Moje ogłoszenia</a>
+      </button>
+      <button *ngIf="signin"  class="btn btn-secondary me-3" type="button" aria-expanded="false">
         <a routerLink="/dodanie_ogloszenia" class="clear link">Dodaj ogłoszenie</a>
       </button>
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

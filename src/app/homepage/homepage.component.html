@@ -5,26 +5,26 @@
         <div class="row">
 
           <h4 class="text-center">Czego szukasz?</h4>
-          <form class="login-form" #addForm="ngForm">
+          <form class="login-form" #addForm="ngForm" (ngSubmit)="search(addForm)">
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="type" class="text-uppercase">Typ Nadwozia</label>
-                <select class="form-select" id="type" aria-label="Default select example">
-                  <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id">{{ bodyType.name }}</option>
+                <select class="form-select" id="type" aria-label="Default select example" name="bodyType" [(ngModel)]="idBodyTypeSelector">
+                  <option *ngFor="let bodyType of bodyTypes" [ngValue]="bodyType.id" >{{ bodyType.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="gas" class="text-uppercase">Paliwo</label>
-                <select class="form-select" id="gas" aria-label="Default select example">
+                <select class="form-select" id="gas" aria-label="Default select example" name="gas" [(ngModel)]="idTypeEnginesSelector">
                   <option *ngFor="let typeEngine of typeEngines"
-                          [ngValue]="typeEngine.id">{{ typeEngine.name }}</option>
+                          [ngValue]="typeEngine.id" >{{ typeEngine.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <label for="marka" class="text-uppercase">Marka</label>
-                <select name="Brand" class="form-select" id="marka" aria-label="Default select example"
+                <select name="mark" class="form-select" id="marka" aria-label="Default select example"
                         [(ngModel)]="idBrandSelector" (ngModelChange)="getModel($event)">
-                  <option *ngFor="let brand of brands" [ngValue]="brand.id" [selected]="brand">{{ brand.name }}</option>
+                  <option *ngFor="let brand of brands" [ngValue]="brand.id" >{{ brand.name }}</option>
                 </select>
               </div>
               <div class="col-md-6">
@@ -40,7 +40,7 @@
                 <select class="form-select" id="generation" aria-label="Default select example"
                         [disabled]="!disabledGeneration">
                   <option *ngFor="let generation of generations"
-                          [ngValue]="generation.id">{{ generation.name }}</option>
+                          [ngValue]="generation.id" ngModel>{{ generation.name }}</option>
                 </select>
               </div>
 
@@ -48,10 +48,10 @@
                 <div class="row">
                   <label class="text-uppercase">Cena</label>
                   <div class="col-md-6">
-                    <input type="number" id="priceFrom" name="priceFrom" class="form-control" placeholder="od">
+                    <input type="number" ngModel id="priceFrom" name="priceFrom" class="form-control" placeholder="od">
                   </div>
                   <div class="col-md-6">
-                    <input type="number" id="priceTo" name="priceTo" class="form-control" placeholder="do">
+                    <input type="number" ngModel id="priceTo" name="priceTo" class="form-control" placeholder="do">
                   </div>
                 </div>
               </div>
@@ -59,10 +59,10 @@
                 <div class="row">
                   <label class="text-uppercase">Przebieg</label>
                   <div class="col-md-6">
-                    <input type="number" id="mileageFrom" name="mileageFrom" class="form-control" placeholder="od">
+                    <input type="number" ngModel id="mileageFrom" name="mileageFrom" class="form-control" placeholder="od">
                   </div>
                   <div class="col-md-6">
-                    <input type="number" id="mileageTo" name="mileageTo" class="form-control" placeholder="do">
+                    <input type="number" ngModel id="mileageTo" name="mileageTo" class="form-control" placeholder="do">
                   </div>
                 </div>
               </div>
@@ -70,11 +70,11 @@
                 <div class="row">
                   <label class="text-uppercase">Produkcja</label>
                   <div class="col-md-6">
-                    <input type="number" id="productionFrom" name="productionFrom" class="form-control"
+                    <input type="number" ngModel id="productionFrom" name="productionFrom" class="form-control"
                            placeholder="od">
                   </div>
                   <div class="col-md-6">
-                    <input type="number" id="productionTo" name="productionTo" class="form-control" placeholder="do">
+                    <input type="number" ngModel id="productionTo" name="productionTo" class="form-control" placeholder="do">
                   </div>
                 </div>
               </div>

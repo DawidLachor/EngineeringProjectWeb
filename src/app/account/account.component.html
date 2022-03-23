@@ -1,0 +1,36 @@
+<section class="login-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 login-sec">
+        <div class="row">
+          <div class="col-md-12 current">
+            <h2 class="text-center">Zmiana hasła</h2>
+          </div>
+        </div>
+        <form class="login-form" #addForm="ngForm" (ngSubmit)="change(addForm)">
+
+          <div class="form-group mt-2 ">
+            <a><label for="newPassword" class="text-uppercase">Nowe hasło</label></a>
+            <input type="password" ngModel name="newPassword" class="form-control" id="newPassword" placeholder="Nowe Hasło">
+          </div>
+            <button type="submit" class="btn btn-login float-end mt-2">Zmień hasło</button>
+          <div *ngIf="changeBool && changeBool != undefined"><p class="text-danger text-center">Hasło zmienione</p></div>
+          <div *ngIf="!changeBool && changeBool != undefined"><p class="text-danger text-center">Hasło nie zmienione. Niepoprawne stare hasło</p></div>
+        </form>
+      </div>
+      <div class="col-md-7 banner-sec">
+        <div class="row">
+          <div class="col-md-12 login-sec" >
+            <h2 class="text-center">Twoje dane</h2>
+          </div>
+          <p>Login: {{account?.username}}</p>
+          <p>Email: {{account?.email}}</p>
+          <p>Imie: {{account?.firstName}}</p>
+          <p>Nazwisko: {{account?.lastName}}</p>
+          <p>Telefon: {{account?.phone}}</p>
+          <p>Lokalizacja: {{account?.location}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
