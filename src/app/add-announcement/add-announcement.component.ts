@@ -12,6 +12,7 @@ import {Observable} from "rxjs";
 import {FileUploadService} from "./file-upload.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {NavigationService} from "../navigation/navigation.service";
 
 @Component({
   selector: 'app-add-announcement',
@@ -37,7 +38,7 @@ export class AddAnnouncementComponent implements OnInit {
   previews: string[] = [];
   imageInfos?: Observable<any>;
 
-  constructor(private router: Router, private homepage: HomepageService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
+  constructor(private router: Router,private navigationService: NavigationService, private homepage: HomepageService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
     this.homepage.getTypeBody().subscribe((bodyTypes: BodyType[]) => {
         this.bodyTypes = bodyTypes;
       }
@@ -56,8 +57,13 @@ export class AddAnnouncementComponent implements OnInit {
     this.disabledGeneration = false;
   }
 
+  signin: boolean = false;
+
   ngOnInit(): void {
-    // this.imageInfos = this.uploadService.getFiles();
+    this.signin = this.navigationService.checkJWT();
+    if(!this.signin){
+      this.router.navigate(['']);
+    }
   }
 
   getModel(brandId: number) {

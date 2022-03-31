@@ -16,9 +16,6 @@
   background: #bbbbbb;
 }
 .background{
-  background: #DE6262 !important;
-  background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262) !important;
-  background: linear-gradient(to bottom, #FFB88C, #DE6262) !important;
   float:left;
   width:100%;
   padding : 50px 0;

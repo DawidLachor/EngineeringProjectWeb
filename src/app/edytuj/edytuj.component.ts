@@ -13,6 +13,8 @@ import {NgForm} from "@angular/forms";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {EdytujService} from "./edytuj.service";
 import {AddAnnouncement} from "../interfaca/add-announcement";
+import {EditAnnouncement} from "../interfaca/edit-announcement";
+import {NavigationService} from "../navigation/navigation.service";
 
 @Component({
   selector: 'app-edytuj',
@@ -39,10 +41,10 @@ export class EdytujComponent implements OnInit {
   imageInfos?: Observable<any>;
   id: number;
   // @ts-ignore
-  addAnnouncementData: AddAnnouncement;
+  addAnnouncementData: EditAnnouncement;
   crash: number | undefined
 
-  constructor(private route: ActivatedRoute, private router: Router, private homepage: HomepageService, private editService: EdytujService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
+  constructor(private route: ActivatedRoute, private router: Router, private navigationService: NavigationService, private homepage: HomepageService, private editService: EdytujService, private addAnnouncementService: AddAnnouncementService, private uploadService: FileUploadService) {
     this.homepage.getTypeBody().subscribe((bodyTypes: BodyType[]) => {
         this.bodyTypes = bodyTypes;
       }
@@ -61,27 +63,21 @@ export class EdytujComponent implements OnInit {
     this.disabledGeneration = false;
 
     this.id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    editService.editAnnouncement(this.id).subscribe((addAnnouncement: AddAnnouncement) => {
+    editService.editAnnouncement(this.id).subscribe((addAnnouncement: EditAnnouncement) => {
       this.addAnnouncementData = addAnnouncement;
       this.getModel(this.addAnnouncementData.brand)
       this.getGeneration(this.addAnnouncementData.model)
-      this.addAnnouncementData.transmission -= 1;
-      this.addAnnouncementData.brand -= 1;
-      this.addAnnouncementData.model -= 1;
-      this.addAnnouncementData.generation -= 1;
-      this.addAnnouncementData.bodyType -= 1;
-      this.addAnnouncementData.gas -= 1;
-      if(this.addAnnouncementData.crash){
-        this.crash = 0
-      } else {
-        this.crash = 1
-      }
+
       console.log(this.addAnnouncementData)
     })
   }
+  signin: boolean = false;
 
   ngOnInit(): void {
-    // this.imageInfos = this.uploadService.getFiles();
+    this.signin = this.navigationService.checkJWT();
+    if(!this.signin){
+      this.router.navigate(['']);
+    }
   }
 
   getModel(brandId: number) {
@@ -102,12 +98,14 @@ export class EdytujComponent implements OnInit {
     );
   }
 
-  addAnnouncement(addForm: NgForm) {
+  editAnnouncement(addForm: NgForm) {
     console.log(addForm.value);
-    this.addAnnouncementService.addAnnouncement(addForm.value).subscribe((id : number) =>{
-      this.uploadFiles(id)
+
+    this.editService.saveAnnouncement(addForm.value, this.addAnnouncementData.idCar, this.addAnnouncementData.id).subscribe(() =>{
+        this.uploadService.delete(this.addAnnouncementData.id).subscribe();
+        this.editFiles(this.addAnnouncementData.id);
+
     });
-    this.router.navigate(['']);
   }
 
   selectFiles(event: any): void {
@@ -148,6 +146,40 @@ export class EdytujComponent implements OnInit {
             const msg = 'Uploaded the file successfully: ' + file.name;
             this.message.push(msg);
             // this.imageInfos = this.uploadService.getFiles();
+          }
+        },
+        error: (err: any) => {
+          this.progressInfos[idx].value = 0;
+          const msg = 'Could not upload the file: ' + file.name;
+          this.message.push(msg);
+          // this.imageInfos = this.uploadService.getFiles();
+        }
+      });
+    }
+  }
+
+  editFiles(announcementId: number): void {
+    this.message = [];
+    if (this.selectedFiles) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        this.edit(i, this.selectedFiles[i], announcementId);
+      }
+    }
+  }
+
+  edit(idx: number, file: File, announcementId: number): void {
+    this.progressInfos[idx] = { value: 0, fileName: file.name };
+    console.log(file);
+    if (file) {
+      this.uploadService.edit(file, announcementId).subscribe({
+        next: (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            const msg = 'Uploaded the file successfully: ' + file.name;
+            this.message.push(msg);
+            // this.imageInfos = this.uploadService.getFiles();
+            this.router.navigate(['/moje-ogloszenia']);
           }
         },
         error: (err: any) => {

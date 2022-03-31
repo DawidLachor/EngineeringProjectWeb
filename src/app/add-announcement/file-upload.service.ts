@@ -23,6 +23,21 @@ export class FileUploadService {
     return this.http.request(req);
   }
 
+  edit(file: File, idAnnotation: number ): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('announcementId', idAnnotation.toString());
+    const req = new HttpRequest('POST', `${this.baseUrl}/edit`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
+  delete( idAnnotation: number ): Observable<any> {
+    return this.http.get(`${this.baseUrl}/delete/${idAnnotation}`);
+  }
+
   getFiles(id: number): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.baseUrl}/${id}/files`);
   }

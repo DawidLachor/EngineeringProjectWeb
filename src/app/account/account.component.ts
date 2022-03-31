@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AccountService} from "./account.service";
 import {NgForm} from "@angular/forms";
 import {Account} from "../interfaca/account";
+import {NavigationService} from "../navigation/navigation.service";
 
 @Component({
   selector: 'app-account',
@@ -16,10 +17,16 @@ export class AccountComponent implements OnInit {
   account: Account;
   changeBool: boolean | undefined
 
+  signin: boolean = false;
+
   ngOnInit(): void {
+    this.signin = this.navigationService.checkJWT();
+    if(!this.signin){
+      this.router.navigate(['']);
+    }
   }
 
-  constructor(private accountService: AccountService,  private router: Router) {
+  constructor(private accountService: AccountService,private navigationService: NavigationService,  private router: Router) {
     accountService.getAccount().subscribe((account: Account) => {
       this.account = account
     })

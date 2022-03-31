@@ -14,7 +14,6 @@ const routes: Routes = [
   {path: '', redirectTo: '/ogloszenia', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'rejestracja', component: RegistrationComponent},
-  {path: 'homepage', component: HomepageComponent},
   {path: 'dodanie_ogloszenia', component: AddAnnouncementComponent},
   {path: 'ogloszenia/:id', component: AnnouncementComponent},
   {path: 'ogloszenia', component: AnnouncementsComponent},

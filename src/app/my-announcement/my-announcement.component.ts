@@ -10,6 +10,8 @@ import {AnnouncementsService} from "../announcements/announcements.service";
 import {FileUploadService} from "../add-announcement/file-upload.service";
 import {NgForm} from "@angular/forms";
 import {MyAnnouncementService} from "./my-announcement.service";
+import {NavigationService} from "../navigation/navigation.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-announcement',
@@ -28,11 +30,16 @@ export class MyAnnouncementComponent implements OnInit {
   generations: Generation[] | undefined;
   announcements: Announcements[] | undefined;
 
-  constructor(private homepage: HomepageService, private service: MyAnnouncementService, private imageService: FileUploadService) {
+  constructor(private homepage: HomepageService,private router: Router, private service: MyAnnouncementService, private navigationService: NavigationService) {
 
   }
+  signin: boolean = false;
 
   ngOnInit(): void {
+    this.signin = this.navigationService.checkJWT();
+    if(!this.signin){
+      this.router.navigate(['']);
+    }
     this.getAllAnnouncements();
   }
 
